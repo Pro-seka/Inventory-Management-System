@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Grocery Inventory System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🛒</div>
+                    <div>
+                        <h1>Smart Grocery Inventory</h1>
+                        <div class="tagline">Smart Inventory, Zero Stock Surprises</div>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-primary" id="addItemBtn">
+                        <span>➕</span> Add Item
+                    </button>
+                    <button class="btn btn-secondary" id="syncBtn">
+                        <span>🔄</span> Sync Devices
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h2 class="dashboard-title">Inventory Dashboard</h2>
+            <div class="date-display" id="currentDate"></div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-value" id="totalItems">12</div>
+                <div class="stat-label">Total Items</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="lowStockItems">3</div>
+                <div class="stat-label">Low Stock</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="expiringItems">2</div>
+                <div class="stat-label">Expiring Soon</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="outOfStockItems">1</div>
+                <div class="stat-label">Out of Stock</div>
+            </div>
+        </div>
+
+        <!-- Inventory Grid -->
+        <div class="inventory-grid" id="inventoryGrid">
+            <!-- Inventory cards will be dynamically generated here -->
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3 class="chart-title">Stock Prediction</h3>
+                <canvas id="predictionChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3 class="chart-title">Stock Status Overview</h3>
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer">
+        <!-- Toasts will be dynamically added here -->
+    </div>
+
+    <!-- Add Item Modal -->
+    <div class="modal-overlay" id="addItemModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Item</h3>
+                <button class="modal-close" id="closeAddModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Simulating voice input. Please enter your command:</p>
+                <input type="text" id="voiceInput" placeholder="e.g., 'Add 20 eggs'" class="input-field" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px;">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelAdd">Cancel</button>
+                <button class="btn btn-primary" id="confirmAdd">Add Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reorder Modal -->
+    <div class="modal-overlay" id="reorderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Auto-Reorder Suggestion</h3>
+                <button class="modal-close" id="closeReorderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="reorderMessage">We suggest reordering the following items:</p>
+                <ul id="reorderList" style="margin: 15px 0; padding-left: 20px;">
+                    <!-- Reorder items will be added here -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelReorder">Not Now</button>
+                <button class="btn btn-primary" id="confirmReorder">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sync Animation -->
+    <div class="sync-animation" id="syncAnimation">
+        <div class="sync-content">
+            <div class="sync-icon">🔄</div>
+            <div class="sync-text">Syncing to all devices...</div>
+            <div class="sync-progress" style="margin-top: 15px;">
+                <div style="height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                    <div id="syncProgressBar" style="height: 100%; background-color: var(--primary); width: 0%; transition: width 0.5s ease;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
